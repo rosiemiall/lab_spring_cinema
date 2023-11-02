@@ -19,9 +19,14 @@ public class MovieController {
     MovieService movieService;
 
     @GetMapping
-    public ResponseEntity<ArrayList<Movie>> viewMovies(){
+    public ResponseEntity<ArrayList<Movie>> viewMovies(@RequestParam(value ="max_duration") int maxDuration){
         ArrayList<Movie> movies = movieService.displayMovies();
-        return new ResponseEntity<>(movies,HttpStatus.OK);
+        for(Movie movie : movies){
+            if (movie.getDuration()>maxDuration){
+                movieService.deleteMovie(movie.getId());
+            }
+        }
+        return new ResponseEntity<>(movieService.displayMovies(),HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")

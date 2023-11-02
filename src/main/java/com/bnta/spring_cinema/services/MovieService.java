@@ -43,10 +43,20 @@ public class MovieService {
         return movieDisplay;
     }
 
-//    public Movie updateMovie(Movie movie){
-//
-//        return movie;
-//    }
+    public Movie updateMovie(long id, Movie updateMovie){
+        Movie movie = movieRepository.getReferenceById(id);
+        movie.setTitle(updateMovie.getTitle());
+        movie.setRating(updateMovie.getRating());
+        movie.setDuration(updateMovie.getDuration());
+        movieRepository.save(movie);
+        return movie;
+    }
+
+    public String deleteMovie(long id){
+        Movie movie = movieRepository.getReferenceById(id);
+        movieRepository.delete(movie);
+        return String.format("%s deleted", movie.getTitle());
+    }
 
 
     public Movie getMovie() {

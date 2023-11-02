@@ -38,9 +38,15 @@ public class MovieController {
         return new ResponseEntity<>(message, HttpStatus.OK);
     }
 
-//    @PutMapping
-//    public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie){
-//        movieService.updateMovie(movie);
-//        return new ResponseEntity<>(movie, HttpStatus.OK);
-//    }
+    @PutMapping(value = "{id}")
+    public ResponseEntity<Movie> updateMovie(@PathVariable long id,@RequestBody Movie movie){
+        movieService.updateMovie(id, movie);
+        return new ResponseEntity<>(movie, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "{id}")
+    public ResponseEntity<String> deleteMovie(@PathVariable long id){
+        String message = movieService.deleteMovie(id);
+        return new ResponseEntity<>(message, HttpStatus.OK);
+    }
 }

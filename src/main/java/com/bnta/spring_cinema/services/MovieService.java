@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,7 +15,6 @@ public class MovieService {
     MovieRepository movieRepository;
 
     private Movie movie;
-//    private ArrayList<Movie> movies;
 
     public MovieService(){
     }
@@ -29,7 +27,6 @@ public class MovieService {
         for (Movie newMovie: newMovies) {
 
             movieRepository.save(newMovie);
-//            this.movies.add(movie);
             message += newMovie.getTitle() +" added. ";
         }
         return message;
@@ -67,11 +64,4 @@ public class MovieService {
         this.movie = movie;
     }
 
-//    public ArrayList<Movie> getMovies() {
-//        return movies;
-//    }
-//
-//    public void setMovies(ArrayList<Movie> movies) {
-//        this.movies = movies;
-//    }
 }
